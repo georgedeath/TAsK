@@ -194,12 +194,21 @@ void StarNetwork::printToFile(const std::string &fileName, int precision){
 	FileWriter fw(fileName);
 	std::string line;
 	std::ostringstream strs;
-					
+    
+    std::string sep = ",";
+    
 	for (StarLink *link = beginOnlyLink(); link != NULL; link = getNextOnlyLink()) {
 		strs.str("");
-		strs << link->getNodeFrom() << " " << link->getNodeTo() << " " << 
-			 std::setprecision(precision) << 
-		link->getFlow() << " " << link->getTime() << "\n";
+        // GEORGE: Changed spaces to commas so file is .csv standard
+		strs << link->getNodeFrom()
+             << sep
+             << link->getNodeTo()
+             << sep
+             << std::setprecision(precision) 
+             << link->getFlow() 
+             << sep 
+             << link->getTime()
+             << "\n";
 		line = strs.str();
 		fw.writeLine(line);
 	}	
