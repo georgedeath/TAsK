@@ -10,6 +10,11 @@ CPPFLAGS += $(foreach includedir,$(program_INCLUDE_DIRS),-I$(includedir))
 #Optimisation and warnings flags
 CPPFLAGS += -Wall -O3 -DUSE_EXTENDED_PRECISION
 
+# need to staticly link if on windows (MinGW fix)
+ifeq ($(OS),Windows_NT)
+    CPPFLAGS += -static-libgcc -static-libstdc++
+endif
+
 .PHONY: all clean distclean
 
 all: $(program_NAME)
