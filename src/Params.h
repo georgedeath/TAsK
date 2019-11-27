@@ -29,6 +29,10 @@ class Params {
 			be added, an error is thrown.
 		*/
 		void addParameter(const std::string &field, const std::string &value);
+        
+		/** Sets a given attribute, overwriting what already exists. <GEORGE>
+		*/
+        void setParameter(const std::string &field, const std::string &value);
 
 		/** Prints all attributes and their corresponding values on screen.
 		*/

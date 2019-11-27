@@ -36,6 +36,15 @@ void Params::addParameter(const std::string &field, const std::string &value){
 	}
 };
 
+// GEORGE
+void Params::setParameter(const std::string &field, const std::string &value){
+    std::pair<std::map<std::string,std::string>::iterator,bool> ret;
+    ret = paramDict_.insert(std::pair<std::string, std::string>(field, value));
+    if (ret.second == false) {
+        paramDict_[field] = value;
+    }
+};
+
 void Params::print(){
 	std::map<std::string, std::string>::iterator it = paramDict_.begin();
 	for(; it != paramDict_.end(); ++it) {

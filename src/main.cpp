@@ -490,18 +490,26 @@ int main(int argc, char *argv[]) {
 		std::string dirFlows = "";
 		std::string dirCounters = "";
 		std::string dirPathSet  ="";
-		if (argc >= 5) {
-			dirConv = argv[2];
-			dirFlows = argv[3];
-			dirCounters = argv[4];
-		}
-		if (argc == 6) {
-			dirPathSet = argv[5];
-		}
 		
 		Params params;
 		ParseParams parser;
 		parser.execute(fileParams, &params);
+        
+        // GEORGE: Add the ability to specify the network, od matrix,
+        // and file we save the flow to to the command line.
+        if (argc == 5) {
+            std::stringstream sss;
+            sss << argv[2] << "\n" << argv[3] << "\n";
+            std::cout << sss.str();
+            
+            std::string g_NETWORK = argv[2];
+            std::string g_OD_MATRIX = argv[3];
+            std::string g_LINK_FLOWS = argv[4];
+            
+            params.setParameter("NETWORK", g_NETWORK);
+            params.setParameter("OD_MATRIX", g_OD_MATRIX);
+            params.setParameter("LINK_FLOWS", g_LINK_FLOWS);
+        }
 		
 		Timer objCreationTimer;
 		ObjectManager manager(&params);
