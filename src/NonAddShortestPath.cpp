@@ -68,7 +68,7 @@ std::pair<FPType, BiObjLabel*> NonAddShortestPath::calculateCostToDest(int destI
 		}
 	}
 	assert(labelWithMinCost != NULL && minCost != std::numeric_limits<FPType>::infinity());
-	return std::make_pair<FPType, BiObjLabel*>(minCost, labelWithMinCost);
+	return std::pair<FPType, BiObjLabel*>(minCost, labelWithMinCost);
 };
 
 void NonAddShortestPath::calculate(int originIndex, int destIndex, int odPairIndex){

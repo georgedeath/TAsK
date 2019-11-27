@@ -7,6 +7,7 @@
 #include <math.h>
 #include <iostream>
 #include <stdlib.h>
+#include <time.h>
 
 PASManager::PASManager(const ShortestPath &shPath, FPType dirTol, int nbNodes, FPType mu, FPType v, 
 						FPType zeroFlow) : 

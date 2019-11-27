@@ -1,22 +1,14 @@
 program_NAME := ta
-program_C_SRCS := $(wildcard *.c)
 program_CXX_SRCS := $(wildcard *.cpp)
-program_C_OBJS := ${program_C_SRCS:.c=.o}
-program_CXX_OBJS := ${program_CXX_SRCS:.cpp=.o} 
-program_OBJS := $(program_C_OBJS) $(program_CXX_OBJS)
-program_INCLUDE_DIRS := 
-program_LIBRARY_DIRS :=
-program_LIBRARIES :=
+program_OBJS := ${program_CXX_SRCS:.cpp=.o}
+
+# put the path to boost in program_INCLUDE_DIRS:
+program_INCLUDE_DIRS := C:\temp\boost_1_71_0
 
 CPPFLAGS += $(foreach includedir,$(program_INCLUDE_DIRS),-I$(includedir))
-LDFLAGS += $(foreach librarydir,$(program_LIBRARY_DIRS),-L$(librarydir))
-LDFLAGS += $(foreach library,$(program_LIBRARIES),-l$(library))
 
 #Optimisation and warnings flags
-CPPFLAGS += -Wall -g -O3 
-
-CPPFLAGS += -DUSE_EXTENDED_PRECISION
-LDFLAGS +=  
+CPPFLAGS += -Wall -O3 -DUSE_EXTENDED_PRECISION
 
 .PHONY: all clean distclean
 

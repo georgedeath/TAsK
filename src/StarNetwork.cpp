@@ -69,7 +69,7 @@ void StarNetwork::createIndexes(){
 								// during construction
 		got = idMap_.find(id);
 		if (got == idMap_.end()) {
-			idMap_.insert(std::make_pair<int, int>(id, count));
+			idMap_.insert(std::pair<int, int>(id, count));
 			++count;
 			assert(count <= nbLinks_);
 		}
@@ -83,7 +83,7 @@ void StarNetwork::addNode(StarNode *node){
 		throw Error("Two nodes were added in a row. Only nodes with out-going links can be added");
 	node->setIndex(size_);
 	nodes_[size_] = node;
-	idMap_.insert(std::make_pair<int, int>(node->getID(), size_)); 
+	idMap_.insert(std::pair<int, int>(node->getID(), size_)); 
 	pointers_[size_] = sizeLinks_;
 	++size_;
 	pointers_[size_] = nbLinks_;
