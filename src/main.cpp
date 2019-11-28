@@ -495,9 +495,9 @@ int main(int argc, char *argv[]) {
 		ParseParams parser;
 		parser.execute(fileParams, &params);
         
-        // GEORGE: Add the ability to specify the network, od matrix,
-        // and file we save the flow to to the command line.
-        if (argc == 5) {
+        // GEORGE: Add the ability to specify the network, od matrix, the file
+        // we save the flow to, and the time limit (secs) to the command line
+        if (argc == 6) {
             std::stringstream sss;
             sss << argv[2] << "\n" << argv[3] << "\n";
             std::cout << sss.str();
@@ -505,10 +505,12 @@ int main(int argc, char *argv[]) {
             std::string g_NETWORK = argv[2];
             std::string g_OD_MATRIX = argv[3];
             std::string g_LINK_FLOWS = argv[4];
+            std::string TIME_LIMIT = argv[5];
             
             params.setParameter("NETWORK", g_NETWORK);
             params.setParameter("OD_MATRIX", g_OD_MATRIX);
             params.setParameter("LINK_FLOWS", g_LINK_FLOWS);
+            params.setParameter("TIME_LIMIT", TIME_LIMIT);
         }
 		
 		Timer objCreationTimer;
