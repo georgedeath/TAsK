@@ -1,0 +1,28 @@
+<NUMBER OF ZONES> 6
+<TOTAL OD FLOW> 395.0
+<END OF METADATA>
+
+~ OD MATRX, edited to make the task harder. Network from:
+~ Suwansirikul, Chaisak, Friesz, Terry L. and Tobin, Roger L., (1987), Equilibrium Decomposed Optimization: A Heuristic for the Continuous Equilibrium Network Design Problem, Transportation Science, 21, issue 4, p. 254-263.
+
+
+Origin 	1 
+    1 :      0.0;     2 :      5.0;     3 :      10.0;    4 :     20.0;     5 :     10.0;     6 :     10.0; 
+
+Origin 	2 
+    1 :      5.0;     2 :      0.0;     3 :     10.0;     4 :     15.0;     5 :     25.0;     6 :      5.0; 
+
+Origin 	3 
+    1 :     15.0;     2 :      5.0;     3 :      0.0;     4 :     25.0;     5 :      5.0;     6 :     50.0; 
+
+Origin 	4 
+    1 :     20.0;     2 :     10.0;     3 :     15.0;     4 :      0.0;     5 :      5.0;     6 :     10.0; 
+
+Origin 	5 
+    1 :     25.0;     2 :     15.0;     3 :      0.0;     4 :     10.0;     5 :      0.0;     6 :     10.0; 
+
+Origin 	6 
+    1 :     20.0;     2 :     10.0;     3 :     20.0;     4 :      5.0;     5 :      5.0;     6 :      0.0; 
+
+
+
