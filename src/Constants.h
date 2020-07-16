@@ -10,7 +10,7 @@ enum PathApp {AppNothing, APP1, APP2, APP3}; /**< existing approaches, are appli
 enum OriginAlgoType {B, Bstep, LUCE, TAPAS}; /**< origin-based algorithms that are implemented. */
 enum ODSetType {PEAPP3, WITH_STEP, GPAPP3 }; /**< possible types of ODSet. */
 
-enum FncType {CONSTFNC, LINEARFNC, BPRFNC, 
+enum FncType {CONSTFNC, LINEARFNC, BPRFNC, SATFNC,
 	SPIESSFNC, SPIESSCOMBFNC, CONSTLINEARFNC, 
 	SPIESSLINEARFNC, SPIESSCOMBLINEARFNC, FD12, FD22, ERROR}; /**< Existing types of link
 																cost functions.*/
