@@ -16,36 +16,36 @@
 <MAX_NB_POINTS_PER_CURVE>: {}
 <MAX_TOLL> : {}
 <MAX_TIME> : {}
-<NODES>: {} 
+<NODES>: {}
 
 <TIME_LIMIT> : {20000} // in seconds
 <ShPathAlgo> : {LC}  // LC, Astar
-<UseP2PShPathWithRandomReturn>: {} 
+<UseP2PShPathWithRandomReturn>: {}
 <FIXED_PROBABILITY>: {}
 <CONV_MEASURE>: {RGAP}
-<PRECISION>: {1e-14} 
-<ZERO_FLOW>: {1e-15}
-<DIR_TOLERANCE>: {1e-15} 
+<PRECISION>: {1e-7}
+<ZERO_FLOW>: {0.0}
+<DIR_TOLERANCE>: {1e-15}
 <ALGORITHM>: {TAPAS}
 		 	<LINE_SEARCH>: {QUAD_APP} // BISEC, ARMIJO, QUAD_APP
 				<LS_PRECISION>: {1e-15} // line search precision
 				<ARMIJO_DEC>: {2}       // decriment in Armijo line search
-			<EQUILIBRATION>: {EQI} 
-			<MAX_ITER>: {0} 
-			<APPROACH>: {APP1} 
-			<ALPHA>: {0} 
-			<SLOPE>: {0.1} 
-			<ISP_SCALE>: {0.1} 
-			<NEWTON_STEPS>: {SINGLE} 
-			<MU>: {0.5} 
+			<EQUILIBRATION>: {EQI}
+			<MAX_ITER>: {0}
+			<APPROACH>: {APP1}
+			<ALPHA>: {0}
+			<SLOPE>: {0.1}
+			<ISP_SCALE>: {0.1}
+			<NEWTON_STEPS>: {SINGLE}
+			<MU>: {0.5}
 			<V>: {0.25}
-		
-<BIOBJ_SHPATH_P2P>: {} 
-<BLS_BOUNDS> : {}
-<USE_EXISTING_PATHS> : {} 
-<USE_PATH_COST_DOMINATION> : {} 
 
-<SHOW_CONVERGENCE>: {} // if not blank then prints convergence to screen
+<BIOBJ_SHPATH_P2P>: {}
+<BLS_BOUNDS> : {}
+<USE_EXISTING_PATHS> : {}
+<USE_PATH_COST_DOMINATION> : {}
+
+<SHOW_CONVERGENCE>: {true} // if not blank then prints convergence to screen
 
 <LINK_FLOWS>: {INTENTIONALLY_BLANK} // path to file where flow will be saved
 <CONVERGENCE>: {} // path to file where convergence will be saved
