@@ -15,14 +15,14 @@ BprFnc::~BprFnc(){
 
 FPType BprFnc::evaluate(FPType linkFlow) const
 {
-    if (capacity_ == 0 || power_ == 0.0 || linkFlow == 0.0)
+    if (capacity_ == 0 || linkFlow == 0.0)
         return freeFlow_;
     return freeFlow_ * (1 + B_ * pow(linkFlow / capacity_, power_));
 };
 
 FPType BprFnc::evaluateDerivative(FPType linkFlow) const
 {
-    if (capacity_ == 0 || power_ == 0.0 || linkFlow == 0.0)
+    if (capacity_ == 0 || linkFlow == 0.0)
         return 0.0;
     return freeFlow_ * B_ * power_ * pow(linkFlow / capacity_, power_ - 1) / capacity_;
 };
