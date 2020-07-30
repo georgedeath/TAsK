@@ -51,3 +51,5 @@
 <CONVERGENCE>: {} // path to file where convergence will be saved
 <PATH_SET>: {}
 <LATEX_OUTPUT>: {}
+
+<COST_FUNC>: {SATURN}

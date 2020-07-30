@@ -7,7 +7,7 @@ class SatFnc : public LinkFnc
 {
 
 public:
-    SatFnc(FPType freeFlow, FPType B, FPType capacity, FPType power);
+    SatFnc(FPType freeFlow, FPType B, FPType capacity, FPType power, FPType capdisp, FPType toll);
     ~SatFnc();
 
     FPType evaluate(FPType linkFlow) const;
@@ -34,7 +34,8 @@ private:
     const FPType B_;
     const FPType capacity_;
     const FPType power_;
-    // const FPType capacityDispersion_;
+    const FPType capdisp_;
+    const FPType toll_;
     // const FPType modelPeriod_;
 };
 
