@@ -453,34 +453,32 @@
 
  */
 
-#include "Error.h"
-#include "DecoratedEqAlgo.h"
-#include "Timer.h"
-#include "ParseParams.h"
-#include "ObjectManager.h"
-#include "Utils.h"
-#include "FileWriter.h"
-#include "PathSetPrinterToFile.h"
-#include "LatexNetOutput.h"
-
-#include <iostream>
-#include <string>
-#include <cassert>
-#include <sstream>
 #include <stdlib.h>
+
+#include <cassert>
+#include <iostream>
+#include <sstream>
+#include <string>
+
+#include "DecoratedEqAlgo.h"
+#include "Error.h"
+#include "FileWriter.h"
+#include "LatexNetOutput.h"
+#include "ObjectManager.h"
+#include "ParseParams.h"
+#include "PathSetPrinterToFile.h"
+#include "Timer.h"
+#include "Utils.h"
 
 #define NB_INPUT_PARAMS 2
 
-int main(int argc, char *argv[])
-{
-    try
-    {
+int main(int argc, char *argv[]) {
+    try {
         // For registering total CPU time
-        Timer timer; // time is started being measured on object creation
+        Timer timer;  // time is started being measured on object creation
 
         // Check if the number of input parameters is correct
-        if (argc < NB_INPUT_PARAMS)
-        {
+        if (argc < NB_INPUT_PARAMS) {
             Error er("Number of input parameters is not correct.");
             throw er;
         }
@@ -501,8 +499,7 @@ int main(int argc, char *argv[])
         // GEORGE: Add the ability to specify the network, od matrix, the file
         // we save the flow to, the time limit (secs) and the cost function
         // to the command line
-        if (argc == 7)
-        {
+        if (argc == 7) {
             std::string g_NETWORK = argv[2];
             std::string g_OD_MATRIX = argv[3];
             std::string g_LINK_FLOWS = argv[4];
@@ -535,32 +532,28 @@ int main(int argc, char *argv[])
 
         FPType timePassed = timer.getTimePassed();
         std::stringstream ss;
-        ss << "<TotalTime> : {" << timePassed << "}; <ObjectCreationTime> : {" << objCreationTime << "}; <InitialisationTime> : {" << algo->getInitialisationTime() << "}; <ExecutionTime> : {" << executionTime << "}; <ConvTime> : {" << algo->getTotalConvTime() << "}; <PureIterationTime> : {" << algo->getTotalPureIterTime() << "}; <NodeFlowFeasibilityMaxChange> : {" << maxDiffTest << "}; <nbIter> : {" << nbIter << "};\n";
-        std::cout << ss.str();
+        ss << "<TotalTime> : {" << timePassed << "}; <ObjectCreationTime> : {" << objCreationTime << "}; <InitialisationTime> : {" << algo->getInitialisationTime() << "}; <ExecutionTime> : {" << executionTime << "}; <ConvTime> : {" << algo->getTotalConvTime() << "}; <PureIterationTime> : {" << algo->getTotalPureIterTime() << "}; <NodeFlowFeasibilityMaxChange> : {" << maxDiffTest << "}; <nbIter> : {" << nbIter << "};";
+        std::cout << ss.str() << std::endl;
 
-        if (params.getParam("PATH_SET") != "")
-        {
+        if (params.getParam("PATH_SET") != "") {
             std::string filename = params.getParam("PATH_SET");
             if (filename == "AUTO")
                 filename = dirPathSet + params.getAutoFileName() + ".paths";
-            PathSetPrinterToFile writePathSet(manager.getODMatrix()); //, *manager.getTolls());
+            PathSetPrinterToFile writePathSet(manager.getODMatrix());  //, *manager.getTolls());
             writePathSet.writePathSetToFile(manager.getPathSet(), filename);
         }
 
-        if (params.getParam("LATEX_OUTPUT") != "")
-        {
+        if (params.getParam("LATEX_OUTPUT") != "") {
             std::cout << "Writing latex file to: " << params.getParam("LATEX_OUTPUT") << std::endl;
 
             LatexNetOutput latex(manager.getNet());
             latex.printToLaTeX(params.getParam("NODES"), params.getParam("LATEX_OUTPUT"),
                                true, 0.3);
         }
-    }
-    catch (Error error)
-    {
-        std::cout << "Error has occured during execution: " << error.getMessage() << std::endl;
+
+        return 0;
+    } catch (Error error) {
+        std::cout << "Error has occurred during execution: " << error.getMessage() << std::endl;
         return 1;
     }
-
-    return 0;
 };

@@ -1,20 +1,21 @@
 #include "DefaultNetParser.h"
-#include "UtilsString.h"
-#include "Error.h"
-#include "BprFnc.h"
-#include "SatFnc.h"
-#include "FileReader.h"
-#include "StarNetwork.h"
-#include "StarNode.h"
-#include "StarLink.h"
+
+#include <stdlib.h>
 
 #include <sstream>
-#include <stdlib.h>
+
+#include "BprFnc.h"
+#include "Error.h"
+#include "FileReader.h"
+#include "SatFnc.h"
+#include "StarLink.h"
+#include "StarNetwork.h"
+#include "StarNode.h"
+#include "UtilsString.h"
 
 /** Internal utility structure.
 */
-struct ParamsLine
-{
+struct ParamsLine {
     int origin;
     int dest;
     FPType capacity;
@@ -36,8 +37,7 @@ DefaultNetParser::~DefaultNetParser(){
 
 };
 
-StarNetwork *DefaultNetParser::parseNetwork()
-{
+StarNetwork *DefaultNetParser::parseNetwork() {
     FileReader readFile(fileWithNetwork_);
 
     std::string netName("");
@@ -58,39 +58,31 @@ StarNetwork *DefaultNetParser::parseNetwork()
 
     std::string line("");
 
-    while (readFile.isGood())
-    {
+    while (readFile.isGood()) {
         line = readFile.getNextLine();
         line = Utils::skipOneLineComment("~", line);
 
-        if (!Utils::deleteWhiteSpaces(line).empty())
-        {
+        if (!Utils::deleteWhiteSpaces(line).empty()) {
             std::stringstream strLine(line);
             strLine >> params.origin >> params.dest >> params.capacity >> params.length >>
                 params.freeFlowTime >> params.b >> params.power >> params.speed >>
                 params.toll >> params.type >> semic;
-            if (originPrev != params.origin)
-            {
-
-                if (params.origin < data.firstNode)
-                {
+            if (originPrev != params.origin) {
+                if (params.origin < data.firstNode) {
                     isZone = true;
                     ++nbZones;
-                }
-                else
-                {
+                } else {
                     isZone = false;
                 }
                 net->addNode(new StarNode(params.origin, isZone));
                 originPrev = params.origin;
+                if (isZone)
+                    std::cout << params.origin << " " << params.dest << std::endl;
             }
 
-            if (costfunc_.compare("BPR") == 0)
-            {
+            if (costfunc_.compare("BPR") == 0) {
                 fnc = new BprFnc(params.freeFlowTime, params.b, params.capacity, params.power, params.toll);
-            }
-            else if (costfunc_.compare("SATURN") == 0)
-            {
+            } else if (costfunc_.compare("SATURN") == 0) {
                 fnc = new SatFnc(params.freeFlowTime, params.b, params.capacity, params.power, params.type, params.toll);
             }
             link = new StarLink(params.origin, params.dest, fnc);
@@ -101,8 +93,7 @@ StarNetwork *DefaultNetParser::parseNetwork()
     return net;
 };
 
-DataFromHeader DefaultNetParser::parseDataFromHeader(FileReader &readFile)
-{
+DataFromHeader DefaultNetParser::parseDataFromHeader(FileReader &readFile) {
     std::string line("");
     std::string field("");
     std::string value("");
@@ -110,30 +101,22 @@ DataFromHeader DefaultNetParser::parseDataFromHeader(FileReader &readFile)
     data.nbNodes = 0;
     data.nbLinks = 0;
     data.firstNode = 0;
-    while (line.find("<END OF METADATA>") == std::string::npos)
-    {
+    while (line.find("<END OF METADATA>") == std::string::npos) {
         line = readFile.getNextLine();
         line = Utils::skipOneLineComment("~", line);
 
-        if (!Utils::deleteWhiteSpaces(line).empty())
-        {
+        if (!Utils::deleteWhiteSpaces(line).empty()) {
             field = Utils::getSubString("<", ">", line);
             value = line.substr(line.find(">") + 1);
-            if (field == "NUMBER OF NODES")
-            {
+            if (field == "NUMBER OF NODES") {
                 data.nbNodes = atoi(value.c_str());
-            }
-            else if (field == "NUMBER OF LINKS")
-            {
+            } else if (field == "NUMBER OF LINKS") {
                 data.nbLinks = atoi(value.c_str());
-            }
-            else if (field == "FIRST THRU NODE")
-            {
+            } else if (field == "FIRST THRU NODE") {
                 data.firstNode = atoi(value.c_str());
             }
         }
-        if (!readFile.isGood())
-        {
+        if (!readFile.isGood()) {
             std::string message = "<END OF METADATA> is missing in file: ";
             message.append(fileWithNetwork_);
             Error er(message);

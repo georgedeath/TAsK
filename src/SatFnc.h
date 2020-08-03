@@ -3,10 +3,8 @@
 
 #include "LinkFnc.h"
 
-class SatFnc : public LinkFnc
-{
-
-public:
+class SatFnc : public LinkFnc {
+   public:
     SatFnc(FPType freeFlow, FPType B, FPType capacity, FPType power, FPType capdisp, FPType toll);
     ~SatFnc();
 
@@ -16,8 +14,7 @@ public:
 
     void print() const;
 
-    virtual std::string toString() const
-    {
+    virtual std::string toString() const {
         return "Saturn fnc";
     };
 
@@ -29,13 +26,14 @@ public:
 
     virtual FPType getCapacity();
 
-private:
+   private:
     const FPType freeFlow_;
     const FPType B_;
     const FPType capacity_;
     const FPType power_;
     const FPType capdisp_;
     const FPType toll_;
+    FPType A_;
     // const FPType modelPeriod_;
 };
 

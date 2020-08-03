@@ -23,12 +23,12 @@
 <UseP2PShPathWithRandomReturn>: {}
 <FIXED_PROBABILITY>: {}
 <CONV_MEASURE>: {RGAP}
-<PRECISION>: {1e-7}
+<PRECISION>: {1e-4}
 <ZERO_FLOW>: {0}
 <DIR_TOLERANCE>: {1e-15}
-<ALGORITHM>: {TAPAS}
+<ALGORITHM>: {BFW}
 		 	<LINE_SEARCH>: {QUAD_APP} // BISEC, ARMIJO, QUAD_APP
-				<LS_PRECISION>: {1e-15} // line search precision
+				<LS_PRECISION>: {1e-7} // line search precision
 				<ARMIJO_DEC>: {2}       // decrement in Armijo line search
 			<EQUILIBRATION>: {EQI}
 			<MAX_ITER>: {0}
