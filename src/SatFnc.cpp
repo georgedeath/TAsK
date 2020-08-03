@@ -77,7 +77,7 @@ FPType SatFnc::evaluateSecondDerivative(FPType linkFlow) const {
 FPType SatFnc::evaluateTimeAndDerivative(FPType linkFlow, FPType &der) {
     if (toll_ == 1e7) {
         der = 0.0;
-        return INFINITY;
+        return toll_;
     }
 
     // same for both
