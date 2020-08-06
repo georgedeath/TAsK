@@ -76,8 +76,6 @@ StarNetwork *DefaultNetParser::parseNetwork() {
                 }
                 net->addNode(new StarNode(params.origin, isZone));
                 originPrev = params.origin;
-                if (isZone)
-                    std::cout << params.origin << " " << params.dest << std::endl;
             }
 
             if (costfunc_.compare("BPR") == 0) {
